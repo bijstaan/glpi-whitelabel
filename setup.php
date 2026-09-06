@@ -29,8 +29,6 @@
  *    authentication source — are text in core templates, reachable only from
  *    the page. Those are rewritten by selector, never by searching the page for
  *    the word "GLPI", which would eventually rewrite somebody's ticket.
- *
- * See docs/surfaces.md for the full inventory and what covers each one.
  */
 
 use Glpi\Http\Firewall;

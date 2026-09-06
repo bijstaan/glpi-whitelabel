@@ -30,9 +30,6 @@ upgrade — everything here works through mechanisms GLPI already has.
 Everything not configured keeps GLPI's own. A half-configured whitelabel should
 leave the rest looking like GLPI rather than like a broken version of it.
 
-[docs/surfaces.md](https://gitlab.rfni.dev/norsewind/glpi-erpnext-mods/-/wikis/glpi-whitelabel/surfaces) is the full inventory: every place GLPI
-states its identity, what covers it, and what deliberately does not.
-
 ## Install
 
 ```bash
@@ -131,7 +128,6 @@ front/config.php       the settings page
 front/style.php        the stylesheet, public by design
 front/asset.php        one image, public by design
 public/js/whitelabel.js  the favicon, and the text CSS cannot reach
-docs/surfaces.md       every place GLPI says it is GLPI
 ```
 
 ## Licence
