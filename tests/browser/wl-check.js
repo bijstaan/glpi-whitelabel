@@ -7,15 +7,20 @@
 // an administrator would — including the file uploads — and then reads the
 // login page, the technician interface and the self-service portal back.
 const { chromium } = require('playwright');
+const { openDark, audit } = require('./dark');
 const { execSync } = require('child_process');
 const { fullPage } = require('./shot');
+const fs = require('fs');
 const path = require('path');
 
 const BASE = 'http://localhost:8081';
 const SHOTS = process.env.SHOT_DIR || '.';
+const DARK_SHOTS = path.join(SHOTS, 'dark');
 // The placeholder logos live with the plugin rather than in a scratch
-// directory, so this check runs from a clean checkout.
-const PICS = process.env.WL_PICS || path.join(__dirname, '../../glpi-whitelabel/tests');
+// directory, so this check runs from a clean checkout. Relative to this file,
+// which is tests/browser/ — the path used to be written from the repository
+// root and stopped resolving when the checks moved beside the plugin.
+const PICS = process.env.WL_PICS || path.join(__dirname, '..');
 
 const fail = [];
 function check(name, cond, detail) {
@@ -167,6 +172,28 @@ const brand = (p) =>
     after.favicon.join(','));
 
   check('no uncaught JavaScript errors', errs.length === 0, errs.join(' | '));
+
+
+  // --- The dark palette --------------------------------------------------
+  //
+  // This plugin's whole job is the ground the logo sits on, so the one surface
+  // worth re-reading on a black body is its own settings page — where the
+  // uploaded images are previewed against it.
+  fs.mkdirSync(DARK_SHOTS, { recursive: true });
+  console.log('\nswitching to the dark palette...');
+
+  const dark = await openDark(browser, { plugin: 'whitelabel' });
+
+  await dark.goto(`${BASE}/plugins/whitelabel/front/config.php`, { waitUntil: 'networkidle' });
+  await dark.waitForTimeout(500);
+  const bad = await audit(dark, 'whitelabel-');
+  check('[dark] settings: no near-white panel carrying dark-body text',
+    bad.whiteBg.length === 0, JSON.stringify(bad.whiteBg));
+  check('[dark] settings: muted text meets 4.5:1',
+    bad.lowContrast.length === 0, JSON.stringify(bad.lowContrast));
+  await fullPage(dark, `${DARK_SHOTS}/whitelabel-dark-01-settings.png`);
+
+  check('[dark] no page errors', dark.__darkErrors.length === 0, dark.__darkErrors.join(' | '));
 
   await browser.close();
   console.log(fail.length ? `\n${fail.length} failed: ${fail.join(', ')}` : '\nall checks passed');
