@@ -123,7 +123,7 @@ const brand = (p) =>
 
   await fullPage(page, `${SHOTS}/whitelabel-03-central.png`);
 
-  // --- the login page, which is where customers actually arrive ----------
+  // --- the login page, which is where entities actually arrive ----------
 
   await page.goto(`${BASE}/front/logout.php`, { waitUntil: 'networkidle' });
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });

@@ -1,7 +1,7 @@
 # Whitelabel
 
-Replaces GLPI's name, logos and favicon with your own. For MSPs handing the
-interface to customers who have never heard of GLPI.
+Replaces GLPI's name, logos and favicon with your own. For anyone handing the
+interface to people who have never heard of GLPI.
 
 Requires GLPI 11.0. No tables, no dependencies, nothing to reapply after an
 upgrade.
@@ -63,7 +63,7 @@ left explicit.
   removes core's rather than just adding one.
 - That JS never searches the page for the string "GLPI". Every replacement is
   anchored to a selector identifying core's chrome, so a ticket, KB article or
-  customer name containing the word is left alone.
+  entity name containing the word is left alone.
 - Plugin scripts serving the stylesheet and images are marked public via
   `Firewall::addPluginStrategyForLegacyScripts()`. Without it GLPI 11 requires
   authentication for legacy plugin scripts, the login page gets an access-denied
@@ -98,6 +98,21 @@ front/style.php          stylesheet, public by design
 front/asset.php          one image, public by design
 public/js/whitelabel.js  favicon, and the text CSS cannot reach
 ```
+
+## Independence
+
+We have never had a GLPI Network subscription. We have not seen the source of
+GLPI's "Exclusive" plugins, or their screens, or their docs. Nothing in here
+came from them.
+
+It was built from GLPI's own source, which is GPL and public, and from its API.
+That is the whole list.
+
+If it looks like theirs in places, that is because core only gives you so many
+places to hook into.
+
+GLPI is a trademark of Teclib'. This plugin is not affiliated with Teclib' or
+the GLPI project.
 
 ## Licence
 

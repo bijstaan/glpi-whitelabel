@@ -6,11 +6,11 @@
 /**
  * Whitelabel — GLPI, wearing your name instead of its own.
  *
- * An MSP hands this interface to its customers, and "GLPI" means nothing to
- * them. It is not a vanity exercise: a helpdesk that announces a product the
- * user has never heard of, in a browser tab that says GLPI, above a logo that
- * is not yours, reads as somebody else's system that you happen to be typing
- * into.
+ * You hand this interface to the people an entity serves, and "GLPI" means
+ * nothing to them. It is not a vanity exercise: a helpdesk that announces a
+ * product the user has never heard of, in a browser tab that says GLPI, above
+ * a logo that is not yours, reads as somebody else's system that you happen to
+ * be typing into.
  *
  * Everything here works by the mechanisms GLPI already has rather than by
  * editing core, because a whitelabel that has to be reapplied after every

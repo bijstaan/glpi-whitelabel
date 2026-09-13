@@ -12,7 +12,7 @@
  * The rule this file follows, and the reason it is written the way it is:
  * **never search the page for the word "GLPI".** A blanket text substitution
  * would eventually rewrite a ticket whose author mentioned GLPI, a knowledge
- * article explaining the migration off it, or a customer's own name. Every
+ * article explaining the migration off it, or an entity's own name. Every
  * replacement below is anchored to a selector that identifies core's chrome.
  */
 (function () {
@@ -97,7 +97,7 @@
      * The name of the built-in authentication source.
      *
      * "GLPI internal database" is what the login form calls local accounts, and
-     * it is the one string on that page a customer is guaranteed to read.
+     * it is the one string on that page an entity is guaranteed to read.
      * Scoped to the picker itself rather than to every option on the page.
      */
     var GLPI_LOCAL = /GLPI internal database/i;
