@@ -36,7 +36,7 @@ use Glpi\Plugin\Hooks;
 use GlpiPlugin\Whitelabel\Settings;
 
 define('PLUGIN_WHITELABEL_VERSION', '0.1.0');
-define('PLUGIN_WHITELABEL_MIN_GLPI', '11.0');
+define('PLUGIN_WHITELABEL_MIN_GLPI', '12.0');
 
 define('PLUGIN_WHITELABEL_CONFIG_CONTEXT', 'plugin:whitelabel');
 
